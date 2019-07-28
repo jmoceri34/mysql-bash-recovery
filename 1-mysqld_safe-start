@@ -1,0 +1,14 @@
+#!/bin/bash
+
+UP=$(pgrep mysql | wc -l);
+if [ "$UP" -ne 1 ];
+then
+	echo '1: MySQL Server is not currently running.';
+else 
+	echo '1: MySQL Server is currently running.';
+	echo '1: Stopping MySQL Server...'
+	/usr/local/mysql/support-files/mysql.server stop
+fi
+
+echo '1: Starting MySQL Server with mysqld_safe...';
+/usr/local/mysql/bin/mysqld_safe --skip-grant-tables &

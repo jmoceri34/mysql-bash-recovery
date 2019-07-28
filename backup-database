@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ ! -d "/Library/BackupDrops" ]; then mkdir /Library/BackupDrops; fi
+
+echo 'Backup-Database: Backing up database...';
+
+/usr/local/mysql/bin/mysqldump -u recovery -p dbname > /Library/BackupDrops/db.backup.sql
+
+echo 'Backup-Database: Backup created at /Library/BackupDrops';
+
+echo 'Backup-Database: Task Complete';

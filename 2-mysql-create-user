@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo '2: Creating MySQL Server user...';
+
+/usr/local/mysql/bin/mysql -u root<<SQL
+flush privileges;
+create user 'recovery'@'localhost' identified by 'recovery';
+grant all privileges on *.* to 'recovery'@'localhost';
+SQL
+
+OUTPUT=$(pgrep mysql);
+
+echo '2: Stopping MySQL Server mysqld_safe command...';
+echo "2: PID-$OUTPUT";
+
+/usr/local/mysql/bin/mysqladmin -u root shutdown
+
+while ps -p $OUTPUT; do sleep 1; done;
+
+echo '2: MySQL Server stopped.';
+
+echo '2: Starting MySQL Server...';
+/usr/local/mysql/support-files/mysql.server start
