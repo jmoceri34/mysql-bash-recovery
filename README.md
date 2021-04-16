@@ -6,4 +6,4 @@
 
 <a name="overview"></a>
 ## Overview
-Bash scripts for resetting user credentials and backup for MySQL
+Bash scripts for resetting user credentials and backup for MySQL.
